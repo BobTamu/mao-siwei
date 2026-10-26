@@ -1,0 +1,129 @@
+{
+  "skill": "mao-fangfa-lun",
+  "version": "0.4.0",
+  "source_book": "毛泽东著作方法论语料库（选集、文集、军事文选、建国以来文稿 1-7） — 毛泽东",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我手上七八件事都在催，资源不够，到底先做哪件？",
+      "expected_behavior": "激活本 skill，加载「集中优势与放弃清单」，先列全部方向与可承受损失，再给主攻方向与放弃清单",
+      "notes": "资源分配困境，核心场景"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "老板让我三天内拿出一个部门改革方案，但我对下面实际情况其实不清楚",
+      "expected_behavior": "激活本 skill，加载「结论后置于调查」与「决策三道前置闸」，指出情况不明时不宜直接出方案",
+      "notes": "取证优先于表态"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "团队里同一个错误犯了三次，每次开会都和气收场，谁也不点名",
+      "expected_behavior": "激活本 skill，加载「思想斗争的操作规矩」与「会议与决策机制」",
+      "notes": "组织落地与信息失真"
+    },
+    {
+      "id": "should-trigger-04",
+      "type": "should_trigger",
+      "prompt": "我要跟一个强势的供应商谈判，既不想撕破脸，也不能一直退",
+      "expected_behavior": "激活本 skill，加载「有理、有利、有节」与「三分法」",
+      "notes": "多方博弈中的分寸"
+    },
+    {
+      "id": "should-trigger-05",
+      "type": "should_trigger",
+      "prompt": "公司要砍 20% 编制，我该按什么顺序砍？",
+      "expected_behavior": "激活本 skill，加载「精简是保骨干」：先定不可砍岗位，再砍重叠与协调层，五项目标同查",
+      "notes": "B2 新增域：组织收缩"
+    },
+    {
+      "id": "should-trigger-06",
+      "type": "should_trigger",
+      "prompt": "我们对外口径老是前后不一致，客户和媒体都在问",
+      "expected_behavior": "激活本 skill，加载「宣传的组织化」与「分发按渠道，姿态取哀者」",
+      "notes": "B2 新增域：宣传与对外表达"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这份 300 行的 CSV 按地区汇总，算出每个区的中位数",
+      "expected_behavior": "不应激活本 skill，这是数据处理任务",
+      "notes": "诱饵：语义沾「调查/汇总」，但无判断需求"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "我最近很焦虑，晚上睡不着，想找人聊聊",
+      "expected_behavior": "不应激活本 skill，属情绪支持，out_of_scope 已排除",
+      "notes": "诱饵：方法论被误用于人生指导"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "帮我看看这个咳了三个月的病人该做什么检查",
+      "expected_behavior": "不应激活本 skill，需要专业资格判断",
+      "notes": "诱饵：医疗判断，防方法论越界"
+    },
+    {
+      "id": "should-not-trigger-04",
+      "type": "should_not_trigger",
+      "prompt": "帮我写一首七律，主题是秋天",
+      "expected_behavior": "不应激活本 skill，这是创作任务",
+      "notes": "诱饵：语料含诗词文本，但蒸馏目标不含文学创作"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我们公司现在同时被三家公司压价，要不要全都降价跟？",
+      "expected_behavior": "可激活并加载「不要四面出击」与「两类矛盾判别」；若用户只是在问定价模型，应先确认意图",
+      "notes": "边界：既是多方博弈，也可能是纯定价计算"
+    },
+    {
+      "id": "edge-02",
+      "type": "edge_case",
+      "prompt": "帮我评价一下毛泽东这个人的历史功过",
+      "expected_behavior": "不应激活本 skill 的方法论部分，应说明只取方法论、不做历史评价",
+      "notes": "边界：主题相关但任务类型落在 out_of_scope"
+    },
+    {
+      "id": "should-trigger-07",
+      "type": "should_trigger",
+      "prompt": "我们刚收购了一家公司，整合从哪下手才不会把原有业务搞垮？",
+      "expected_behavior": "激活本 skill，加载「入城三条线」，先定必须保护的资产与强制边界，再谈整合",
+      "notes": "B3 新增域：接管与整合"
+    },
+    {
+      "id": "should-trigger-08",
+      "type": "should_trigger",
+      "prompt": "团队连续三个月高强度交付，最近低级错误越来越多",
+      "expected_behavior": "激活本 skill，加载「开合节奏」，把休整锁进周期，先定开关点",
+      "notes": "B3 新增域：节奏与疲劳管理"
+    },
+    {
+      "id": "should-not-trigger-05",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这段 Python 代码改成异步的",
+      "expected_behavior": "不应激活本 skill，这是纯编码任务",
+      "notes": "诱饵：方法论 skill 不应介入纯技术实现"
+    },
+    {
+      "id": "should-trigger-09",
+      "type": "should_trigger",
+      "prompt": "老板要我把交付周期砍一半，但流程上有几步是必须的",
+      "expected_behavior": "激活本 skill，加载「加速不跳序」，只压准备期不跳必经阶段",
+      "notes": "B4 新增域：加速与流程"
+    },
+    {
+      "id": "should-trigger-10",
+      "type": "should_trigger",
+      "prompt": "下面总抱怨报表和会议太多，怎么治",
+      "expected_behavior": "激活本 skill，加载「基层的乱先到上面找制造者」，从下发链条治理而非整顿基层",
+      "notes": "B4 新增域：归因与减负"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "10 条 should_trigger + 5 条 should_not_trigger + 2 条 edge_case。全部 should_not_trigger 必须通过。"
+}

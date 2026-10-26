@@ -1,0 +1,18 @@
+# 原文语料不入库（体积与版权）
+sources/
+corpus/
+*.epub
+*.pdf
+*.mobi
+*.azw3
+
+# 构建中间物
+.cangjie/
+dist/.staging-*/
+build/
+*.log
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
